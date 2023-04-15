@@ -18,7 +18,7 @@ import MapViewOptions from "./MapViewOptions";
 import '../App.css'
 import '../styles/SearchLocation.css'
 
-const MAPBOX_TOKEN = mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+const MAPBOX_TOKEN = mapboxgl.accessToken = "pk.eyJ1IjoicHJhbW9kbWh0IiwiYSI6ImNsZ2NhY2huaTFpejgzbHBpcXowdzljb20ifQ.PyFyWbGkVvrwOnSozTAMYg";
 
 function SearchLocation({ onLocationSelect }) {
     const mapRef = useRef(null);
