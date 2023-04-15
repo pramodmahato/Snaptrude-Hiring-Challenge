@@ -11,7 +11,7 @@ function Header() {
       <Container maxWidth="xl" >
         <Toolbar disableGutters style={{backgroundColor:"#000001"}}>
           
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' }, justifyContent: {xs: 'center'} }} >
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' }, justifyContent: {xs: 'center', md: 'start'} }} >
           <img src={snaptrudeLogo} alt="Snaptrude Logo" height="40px"/>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'normal', marginRight:"13%" }}>

@@ -4,7 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import React, { useState, useRef, useCallback, useEffect } from "react";
 
-import Map, { Marker, NavigationControl } from "react-map-gl";
+import Map, { Marker } from "react-map-gl";
 
 import Geocoder from "react-map-gl-geocoder";
 import markerLogo from "../assets/marker.png"
@@ -18,7 +18,7 @@ import MapViewOptions from "./MapViewOptions";
 import '../App.css'
 import '../styles/SearchLocation.css'
 
-const MAPBOX_TOKEN = mapboxgl.accessToken = "pk.eyJ1IjoicHJhbW9kbWh0IiwiYSI6ImNsZ2NhY2huaTFpejgzbHBpcXowdzljb20ifQ.PyFyWbGkVvrwOnSozTAMYg";
+const MAPBOX_TOKEN = mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 function SearchLocation({ onLocationSelect }) {
     const mapRef = useRef(null);
@@ -101,7 +101,6 @@ function SearchLocation({ onLocationSelect }) {
                 <Marker latitude={17.823122} longitude={76.9784962} anchor="bottom" color="#4668f2">
                     <img src={markerLogo} alt="marker" height="40" />
                 </Marker>
-                <NavigationControl position="bottom-right" />
             </Map>
         </div>
 
