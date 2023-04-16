@@ -25,7 +25,7 @@ function SearchLocation({ onLocationSelect }) {
     const [screenshotUrl, setScreenshotUrl] = useState(null);
     const [mapStyle, setMapStyle] = useState("mapbox://styles/mapbox/streets-v11")
 
-    //Below is the co-ordinates of Snaptrude's Hyderabad Office
+    //Below is the co-ordinates of Snaptrude's Office according to GMaps
     const longitude = 76.9784962;
     const latitude = 17.823122;
 
