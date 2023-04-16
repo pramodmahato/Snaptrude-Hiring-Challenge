@@ -96,7 +96,7 @@ function SearchLocation({ onLocationSelect }) {
                     mapRef={mapRef}
                     onViewportChange={handleGeocoderViewportChange}
                     mapboxApiAccessToken={MAPBOX_TOKEN}
-                    position="top-right"
+                    position="top-left"
                 />
                 <Marker latitude={17.823122} longitude={76.9784962} anchor="bottom" color="#4668f2">
                     <img src={markerLogo} alt="marker" height="40" />
