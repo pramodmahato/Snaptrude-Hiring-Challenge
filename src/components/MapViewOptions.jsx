@@ -1,5 +1,4 @@
 import IconButton from '@mui/material/IconButton';
-
 import MapIcon from '@mui/icons-material/Map';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -7,7 +6,8 @@ import BedtimeIcon from '@mui/icons-material/Bedtime';
 import TrafficIcon from '@mui/icons-material/Traffic';
 import { Box } from '@mui/system';
 import { Tooltip } from '@mui/material';
-function MapViewOptions({setMapStyle}) {
+import '../styles/MapViewOptions.css';
+function MapViewOptions({ setMapStyle }) {
     const mapLayouts = [
         {
             id: 1,
@@ -41,21 +41,23 @@ function MapViewOptions({setMapStyle}) {
         },
     ]
     const changeMapLayout = (id) => {
-       mapLayouts.forEach((view)=>{
-        if(view.id === id){
-            setMapStyle(view.mapURL);
-        }
-       })
+        mapLayouts.forEach((view) => {
+            if (view.id === id) {
+                setMapStyle(view.mapURL);
+            }
+        })
     }
     return (<>
-        <Box sx={{
-            flexGrow: 1, display: { xs: 'flex', md: 'flex', lg: 'flex' }, justifyContent: 'center', marginTop: "20px"
-        }}>
-            {mapLayouts.map((view) => <Tooltip title={view.name}>
-                <IconButton className='map-layout-options' onClick={()=>changeMapLayout(view.id)} key={view.id}>
-                    {view.element}
-                </IconButton>
-            </Tooltip>)}
+        <Box className='map-layout-option-box'>
+            {mapLayouts.map((view) =>
+                <Tooltip title={view.name} key={view.id}>
+                    <IconButton
+                        className='map-layout-options'
+                        onClick={() => changeMapLayout(view.id)}
+                        key={view.id}>
+                        {view.element}
+                    </IconButton>
+                </Tooltip>)}
 
         </Box>
     </>)

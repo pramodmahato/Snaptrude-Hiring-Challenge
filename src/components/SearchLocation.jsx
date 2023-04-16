@@ -12,9 +12,8 @@ import html2canvas from "html2canvas";
 import Cuboid from "./Cuboid";
 import Button from '@mui/material/Button';
 import { Box } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
 import MapViewOptions from "./MapViewOptions";
-
+import Loading from "./Loading";
 import '../App.css'
 import '../styles/SearchLocation.css'
 
@@ -30,6 +29,11 @@ function SearchLocation({ onLocationSelect }) {
     const longitude = 76.9784962;
     const latitude = 17.823122;
 
+    const resetCube = () => {
+        setScreenshotUrl(null);
+        setCuboidLoaded(false);
+    }
+
     useEffect(() => {
         if (screenshotUrl !== null) {
             //To mock a delay of 1.5s to crating a loading scenario
@@ -39,8 +43,7 @@ function SearchLocation({ onLocationSelect }) {
 
     useEffect(() => {
         //To set everything to default state when the user changes the map layout
-        setScreenshotUrl(null);
-        setCuboidLoaded(false);
+        resetCube();
     }, [mapStyle])
 
     const [viewport, setViewport] = useState({
@@ -51,8 +54,7 @@ function SearchLocation({ onLocationSelect }) {
     });
 
     const handleScreenshotClick = () => {
-        setCuboidLoaded(false)
-        setScreenshotUrl(null)
+        resetCube();
         const element = document.getElementById("mapContainer");
         html2canvas(element).then((canvas) => {
             const dataUrl = canvas.toDataURL();
@@ -69,8 +71,7 @@ function SearchLocation({ onLocationSelect }) {
     const handleGeocoderViewportChange = useCallback(
         (newViewport) => {
             const geocoderDefaultOverrides = { transitionDuration: 1000 };
-            setCuboidLoaded(false)
-            setScreenshotUrl(null);
+            resetCube();
             return handleViewportChange({
                 ...newViewport,
                 ...geocoderDefaultOverrides
@@ -79,7 +80,7 @@ function SearchLocation({ onLocationSelect }) {
         [handleViewportChange]
     );
 
-    return (<div style={{ backgroundColor: "#000001" }}>
+    return (<div>
         <div style={{ height: "50vh" }}
             id="mapContainer">
             <Map
@@ -89,7 +90,6 @@ function SearchLocation({ onLocationSelect }) {
                 height="100%"
                 onViewportChange={handleViewportChange}
                 mapboxApiAccessToken={MAPBOX_TOKEN}
-                projection="globe"
                 mapStyle={mapStyle}
             >
                 <Geocoder
@@ -98,7 +98,7 @@ function SearchLocation({ onLocationSelect }) {
                     mapboxApiAccessToken={MAPBOX_TOKEN}
                     position="top-left"
                 />
-                <Marker latitude={17.823122} longitude={76.9784962} anchor="bottom" color="#4668f2">
+                <Marker latitude={latitude} longitude={longitude} anchor="bottom">
                     <img src={markerLogo} alt="marker" height="40" />
                 </Marker>
             </Map>
@@ -106,22 +106,20 @@ function SearchLocation({ onLocationSelect }) {
 
         <MapViewOptions setMapStyle={setMapStyle} />
 
-        
         <Box className="loading">
-            <Button onClick={handleScreenshotClick} variant="contained" className="snaptrude-button" style={{marginTop:"20px"}}>Snap it!</Button>
+            <Button onClick={handleScreenshotClick} variant="contained" className="snaptrude-button">Snap it!</Button>
         </Box>
 
         { //Loading Screen
-        screenshotUrl && !cuboidLoaded && <Box className="loading"><CircularProgress className="progress-bar" style={{ marginTop: "40px" }} /></Box>}
+            screenshotUrl && !cuboidLoaded && <Loading/>}
 
         {//3D Rendering Engine
-        cuboidLoaded && (<div style={{ marginTop: "20px" }}>
-
-            <div style={{ maxHeight: "500px", marginTop: "20px" }}>
-                <Cuboid style={{ height: "50vh" }} screenshotUrl={screenshotUrl} setCuboidLoaded={setCuboidLoaded} />
+            cuboidLoaded && (<div style={{ marginTop: "20px" }}>
+                <div className="cuboid-cointainer">
+                    <Cuboid screenshotUrl={screenshotUrl} />
+                </div>
             </div>
-        </div>
-        )}
+            )}
     </div>
     );
 }

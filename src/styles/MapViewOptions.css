@@ -1,0 +1,6 @@
+.map-layout-option-box{
+    flex-grow: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 20px !important;
+   }

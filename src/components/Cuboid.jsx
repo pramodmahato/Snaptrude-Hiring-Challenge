@@ -1,7 +1,7 @@
 import * as BABYLON from "babylonjs";
 import { useEffect } from "react";
 
-function Cuboid({ screenshotUrl, setCuboidLoaded }) {
+function Cuboid({ screenshotUrl }) {
 
     useEffect(() => {
 
@@ -48,7 +48,7 @@ function Cuboid({ screenshotUrl, setCuboidLoaded }) {
     })
 
     return (<div >
-        <canvas id="renderCanvas" style={{ width: "100%", maxHeight: "400px" }} />
+        <canvas id="renderCanvas" />
     </div>)
 }
 

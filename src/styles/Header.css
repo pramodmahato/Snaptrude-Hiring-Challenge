@@ -1,0 +1,22 @@
+header{
+    background-color: #0001 !important;
+}
+.header-logo{
+flex-grow: 1;
+display: flex;
+justify-content: start;
+}
+.header-text{
+flex-grow: 1;
+display: flex;
+justify-content: normal;
+margin-right: 13%;;
+}
+@media only screen and (max-width: 700px) {
+    .header-logo{
+        justify-content: center;
+        }
+    .header-text{
+        display:none;
+    }
+  }

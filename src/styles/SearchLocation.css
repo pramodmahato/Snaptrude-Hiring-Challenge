@@ -1,9 +1,16 @@
-.loading{
- flex-grow: 1;
- display: flex;
- justify-content: center;
- margin-top: "20px";
+.loading {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: "20px";
 }
-.progress-bar{
-    margin-top: "40px" !important;
+.progress-bar {
+  margin-top: "40px" !important;
+}
+.cuboid-container {
+  max-height: 500px;
+  margin-top: 20px;
+}
+.snaptrude-button{
+    margin-top: 20px !important;
 }
