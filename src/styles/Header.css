@@ -4,7 +4,7 @@ header{
 .header-logo{
 flex-grow: 1;
 display: flex;
-justify-content: start;
+justify-content: flex-start;
 }
 .header-text{
 flex-grow: 1;
